@@ -20,6 +20,7 @@ const counter = {
 		<div>
 			<div>点击数量:{{count}}</div>
 			<div>用户名:{{name}}</div>
+			<div>用户名:{{userName}}</div>
 		</div>
 	`,
 	// props:['count'],
@@ -29,6 +30,9 @@ const counter = {
 		},
 		name(){
 			return this.$store.state.name
+		},
+		userName(){
+			return this.$store.getters.userName
 		}
 	}
 }
@@ -36,6 +40,11 @@ const store = new Vuex.Store({//相当于全局变量
 	state:{
 		count:10,
 		name:"jack"
+	},
+	getters:{
+		userName(state){
+			return state.name + ', Hello'
+		}
 	},
 	mutations:{//必须是同步的代码
 		increment(state, num){

@@ -37,7 +37,7 @@ const store = new Vuex.Store({//相当于全局变量
 		count:10,
 		name:"jack"
 	},
-	mutations:{
+	mutations:{//必须是同步的代码
 		increment(state, num){
 			//变更状态
 			state.count = num
@@ -47,6 +47,11 @@ const store = new Vuex.Store({//相当于全局变量
 			state.name = userName
 		},
 	},
+	actions:{//可以是异步的代码
+		incrementAction(context, num){
+			context.commit('increment', num)
+		}
+	}
 })
 
 new Vue({
@@ -61,8 +66,7 @@ new Vue({
 	},
 	methods:{
 		add(){
-			this.$store.commit('increment', 100)
-			this.$store.commit('updateName', 'Mary')
+			this.$store.dispatch('incrementAction', 5)
 		}
 	}
 })

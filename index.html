@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vuex研究</title>
+</head>
+<body>
+
+<div id="app">
+	<div>{{msg}}</div>
+	<counter :count="count"></counter>
+</div>
+
+<script src="https://cdn.bootcss.com/vue/2.4.4/vue.js"></script>
+<script src="https://cdn.bootcss.com/vuex/2.4.1/vuex.js"></script>
+<script>
+const counter = {
+	template:`
+		<div>{{count}}</div>
+	`,
+	props:['count'],
+	computed:{
+		// count(){
+		// 	return this.$store.state.count
+		// }
+	}
+}
+const store = new Vuex.Store({//相当于全局变量
+	state:{
+		count:0
+	},
+})
+
+new Vue({
+	el:'#app',
+	// store,
+	data:{
+		count:10,
+		msg:'vuex的使用'
+	},
+	components:{
+		counter
+	}
+})
+</script>
+</body>
+</html>

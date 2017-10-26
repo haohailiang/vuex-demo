@@ -17,24 +17,35 @@
 <script>
 const counter = {
 	template:`
-		<div>{{count}}</div>
+		<div>
+			<div>点击数量:{{count}}</div>
+			<div>用户名:{{name}}</div>
+		</div>
 	`,
 	// props:['count'],
 	computed:{
 		count(){
 			return this.$store.state.count
+		},
+		name(){
+			return this.$store.state.name
 		}
 	}
 }
 const store = new Vuex.Store({//相当于全局变量
 	state:{
-		count:10
+		count:10,
+		name:"jack"
 	},
 	mutations:{
-		increment(state){
+		increment(state, num){
 			//变更状态
-			state.count++
-		}
+			state.count = num
+		},
+		updateName(state, userName){
+			//变更状态
+			state.name = userName
+		},
 	},
 })
 
@@ -50,7 +61,8 @@ new Vue({
 	},
 	methods:{
 		add(){
-			this.$store.commit('increment')
+			this.$store.commit('increment', 100)
+			this.$store.commit('updateName', 'Mary')
 		}
 	}
 })

@@ -8,7 +8,7 @@
 
 <div id="app">
 	<div>{{msg}}</div>
-	<counter :count="count"></counter>
+	<counter></counter>
 </div>
 
 <script src="https://cdn.bootcss.com/vue/2.4.4/vue.js"></script>
@@ -18,24 +18,24 @@ const counter = {
 	template:`
 		<div>{{count}}</div>
 	`,
-	props:['count'],
+	// props:['count'],
 	computed:{
-		// count(){
-		// 	return this.$store.state.count
-		// }
+		count(){
+			return this.$store.state.count
+		}
 	}
 }
 const store = new Vuex.Store({//相当于全局变量
 	state:{
-		count:0
+		count:10
 	},
 })
 
 new Vue({
 	el:'#app',
-	// store,
+	store,
 	data:{
-		count:10,
+		count:15,
 		msg:'vuex的使用'
 	},
 	components:{

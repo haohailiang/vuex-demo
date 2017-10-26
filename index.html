@@ -7,6 +7,7 @@
 <body>
 
 <div id="app">
+	<button @click="add">increment</button>
 	<div>{{msg}}</div>
 	<counter></counter>
 </div>
@@ -29,6 +30,12 @@ const store = new Vuex.Store({//相当于全局变量
 	state:{
 		count:10
 	},
+	mutations:{
+		increment(state){
+			//变更状态
+			state.count++
+		}
+	},
 })
 
 new Vue({
@@ -40,6 +47,11 @@ new Vue({
 	},
 	components:{
 		counter
+	},
+	methods:{
+		add(){
+			this.$store.commit('increment')
+		}
 	}
 })
 </script>
